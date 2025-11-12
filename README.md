@@ -24,4 +24,5 @@ Documenting my practical labs for the AZ-104 certification. This is my path from
 
 ---
 
-![Azure Logo](https://learn.microsoft.com/en-us/azure/includes/media/azure-branding/azure-logo.png) *Powered by Azure & GitHub*
+![Azure Logo](https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg) *Powered by Azure & GitHub*
+
