@@ -36,8 +36,8 @@ Hands-on with secure boot (vTPM enabled) and NSG basics—critical for reliable,
 ## Screenshots
 ## Screenshots
 ![VM Overview - Running Status](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/01-create-windows-vm/vm-overview.png)
-![Basics Tab - Config Details](vm-basics.png)
-![Networking & Security - IP/NSG Rules](vm-networking.png)
+![Basics Tab - Config Details](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/01-create-windows-vm/vm-basics.png)
+![Networking & Security - IP/NSG Rules](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/01-create-windows-vm/vm-networking.png)
 
 ## Cleanup
 - Stopped VM via Portal (Overview > Stop) to halt costs.
