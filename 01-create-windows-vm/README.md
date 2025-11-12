@@ -34,11 +34,9 @@ Deploy a Windows Server VM using the Azure Portal and connect via RDP. (Udemy Se
 Hands-on with secure boot (vTPM enabled) and NSG basics—critical for reliable, hardened infra. Ties to observability: Health monitoring disabled here, but I'd enable Azure Monitor for alerts in prod.
 
 ## Screenshots
-*(Upload your PNGs to /screenshots/ folder, then add links like below—see Step 3.)*
-![VM Overview - Running Status](./screenshots/vm-overview.png)
-![Basics Tab - Config Details](./screenshots/vm-basics.png)
-![Networking Tab - IP & NSG Rules](./screenshots/vm-networking.png)
-![RDP Connection Inside VM](./screenshots/rdp-success.png) *(If you have this; otherwise, skip.)*
+![VM Overview - Running Status](./vm-overview.png)
+![Basics Tab - Config Details](./vm-basics.png)
+![Networking & Security - IP/NSG Rules](./vm-networking.png)
 
 ## Cleanup
 - Stopped VM via Portal (Overview > Stop) to halt costs.
