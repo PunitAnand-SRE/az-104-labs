@@ -4,11 +4,12 @@ Documenting my practical labs for the AZ-104 certification. This is my path from
 
 ## 📘 Progress Tracker
 
-| Lab # | Topic                  | Status      | Date Completed | Key Learnings |
+| Lab # | Topic | Status | Date Completed | Key Learnings |
 |-------|------------------------|-------------|----------------|---------------|
-| 1     | Create Windows VM     | ✅ Done    | Nov 11, 2025  | NSG rules for secure access, RDP setup, basic cost management |
-| 2     | Manage Azure Storage  | ⏳ Planned  | -              | -             |
-| 3     | Configure Virtual Network | ⏳ Planned | -              | -             |
+| 1 | Create Windows VM | ✅ Done | Nov 11, 2025 | NSG rules for secure access, RDP setup, basic cost management |
+| 2 | Configure and Secure Windows VM with IIS | ✅ Done | Nov 13, 2025 | VM sizing for performance; NSG rules for inbound security; IIS deployment basics |
+| 3 | Manage Azure Storage | ⏳ Planned | - | - |
+| 4 | Configure Virtual Network | ⏳ Planned | - | - |
 
 ## 🚀 Why This Repo?
 - **Proof of Work**: Screenshots, steps, and reflections to showcase in interviews or manager chats (e.g., "See how I handled VM provisioning?").
