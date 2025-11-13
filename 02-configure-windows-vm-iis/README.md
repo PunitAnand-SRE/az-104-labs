@@ -22,7 +22,7 @@ The default B1s size (1 vCPU, 1 GiB RAM) often causes RDP timeouts due to low re
 3. Search for "B2s" (2 vCPUs, 4 GiB RAM—burstable, cost-effective).
 4. Click **Resize** (VM restarts automatically).
 
-![Azure VM overview showing resized B2s specs and public IP](screenshots/vm-overview.png)
+![Azure VM overview showing resized B2s specs and public IP](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/02-configure-windows-vm-iis/screenshots/vm-overview.png)
 
 **Tip**: Use Azure Advisor (in the portal) for sizing recommendations—it's free and proactive.
 
@@ -32,7 +32,7 @@ The default B1s size (1 vCPU, 1 GiB RAM) often causes RDP timeouts due to low re
 3. Use Azure-provided credentials (username: your admin user; password: from Lab 01).
 4. Connect—expect a quick handshake if resized properly.
 
-![Server Manager dashboard after RDP connection, showing initial roles and quick start options](screenshots/server-manager-dashboard.png)
+![Server Manager dashboard after RDP connection, showing initial roles and quick start options](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/02-configure-windows-vm-iis/screenshots/server-manager-dashboard.png)
 
 **Troubleshooting**: If timeout persists, check NSG for RDP (port 3389) allow rule and public IP accessibility.
 
@@ -53,7 +53,7 @@ By default, NSGs block inbound HTTP. Your VM's public IP (e.g., 4.187.210.208) n
 3. Source: Any; Destination: Any; Service: HTTP (port 80); Action: Allow; Priority: 310 (higher than deny rules).
 4. Save.
 
-![NSG inbound rules showing added HTTP allow on port 80](screenshots/nsg-inbound-rules.png)
+![NSG inbound rules showing added HTTP allow on port 80](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/02-configure-windows-vm-iis/screenshots/nsg-inbound-rules.png)
 
 **Security Best Practice**: Use priority numbering (100-4096) to control rule order. Deny rules (e.g., "DenyAllInbound") should be lowest priority.
 
@@ -61,7 +61,7 @@ By default, NSGs block inbound HTTP. Your VM's public IP (e.g., 4.187.210.208) n
 1. From your local browser: `http://<public-ip>` (e.g., http://4.187.210.208).
 2. See the IIS welcome page.
 
-![IIS default welcome page confirming successful HTTP access](screenshots/iis-welcome-page.png)
+![IIS default welcome page confirming successful HTTP access](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/02-configure-windows-vm-iis/screenshots/iis-welcome-page.png)
 
 **Troubleshooting**: Check VM's Windows Firewall (inbound rules for IIS) and NSG effective rules.
 
