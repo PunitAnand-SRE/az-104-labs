@@ -39,7 +39,8 @@ Leverage Azure Portal's wizardry for rapid instantiation:
 - **Networking Tab:** Virtual network `vnet-centralindia` / subnet `snet-centralindia-1`. Auto-assign public IP.  
 - Review + Create → Deploy (under 2 minutes).  
 
-![VM Overview Dashboard](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/vm-overview.png)  
+![VM Overview Dashboard](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/vm-overview.png.png
+)  
 *Essentials at a glance: Running state, OS details, and creation timestamp—your SRE dashboard starter pack.*
 
 ### 2. Fortify Networking with NSG Precision  
