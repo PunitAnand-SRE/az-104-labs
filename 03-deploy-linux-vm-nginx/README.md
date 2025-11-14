@@ -61,7 +61,8 @@ ssh punit@135.235.169.6
 - Accept ECDSA fingerprint (`SHA256:...`—verify against known hosts).  
 - Authenticate with password. Greeted by Ubuntu MOTD: Kernel `6.8.0-1012-azure`, 28 GB disk, ESM updates pending.  
 
-![SSH Connection Secured](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/ssh-login.png.png)  
+![SSH Connection Secured](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/ssh-login.png.jpg
+)  
 *Welcome aboard: System load 0.16/28 GB—primed for action. (Note: Tailscale or Azure Bastion for prod zero-trust.)*
 
 ### 4. Package Symphony: Update & Orchestrate Nginx  
@@ -82,7 +83,8 @@ Fire up your browser: `http://135.235.169.6`
 - "Not secure" warning? HTTP's nature—migrate to HTTPS via Cert-Manager in Lab 05.  
 - Victory: Nginx's crisp welcome page loads, confirming 80/tcp traversal.  
 
-![Nginx Deployment Victory](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/nginx-welcome.png.png)  
+![Nginx Deployment Victory](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/nginx-welcome.png.jpg
+)  
 *"Welcome to nginx!"—If you see this, your event-loop maestro is humming. Docs at nginx.org for config wizardry.*
 
 ---
