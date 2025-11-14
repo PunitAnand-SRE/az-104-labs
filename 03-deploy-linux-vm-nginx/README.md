@@ -49,7 +49,8 @@ Azure's Network Security Groups (NSGs) are your firewall moat:
 - Rule: Source `Any`, Port `80` (HTTP), Priority `100`, Action `Allow`.  
 - Auto-attaches `LinuxAppVM-nsg`—defaults to deny-all outbound/inbound for ironclad defense.  
 
-![Network Configuration Mastery](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/network-settings.png)  
+![Network Configuration Mastery](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/network-settings.png.png
+)  
 *Public IP exposed judiciously; private IP tucked away. Zero effective security rules beyond our HTTP carve-out—expand to 443 for TLS next.*
 
 ### 3. SSH Ingress: Secure Tunnel to the Core  
@@ -60,7 +61,7 @@ ssh punit@135.235.169.6
 - Accept ECDSA fingerprint (`SHA256:...`—verify against known hosts).  
 - Authenticate with password. Greeted by Ubuntu MOTD: Kernel `6.8.0-1012-azure`, 28 GB disk, ESM updates pending.  
 
-![SSH Connection Secured](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/ssh-login.png)  
+![SSH Connection Secured](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/ssh-login.png.png)  
 *Welcome aboard: System load 0.16/28 GB—primed for action. (Note: Tailscale or Azure Bastion for prod zero-trust.)*
 
 ### 4. Package Symphony: Update & Orchestrate Nginx  
@@ -71,9 +72,9 @@ sudo apt install nginx  # Builds deps (nginx-common, nginx-core: 564 KB), auto-s
 ```  
 - 31 packages upgraded; no conflicts. Nginx v1.24.0-2ubuntu7.5 spins up flawlessly.  
 
-![Apt Update Ritual](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/apt-update.png)  
+![Apt Update Ritual](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/apt-update.png.png)  
 
-![Nginx Installation Triumph](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/install-nginx.png)  
+![Nginx Installation Triumph](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/install-nginx.png.png)  
 *Dependency tree woven, binaries upgraded—no restarts needed. ESM for apps: Disabled (enable for vuln patching).*
 
 ### 5. Validate the Fortress: Browser Ingress Test  
@@ -81,7 +82,7 @@ Fire up your browser: `http://135.235.169.6`
 - "Not secure" warning? HTTP's nature—migrate to HTTPS via Cert-Manager in Lab 05.  
 - Victory: Nginx's crisp welcome page loads, confirming 80/tcp traversal.  
 
-![Nginx Deployment Victory](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/nginx-welcome.png)  
+![Nginx Deployment Victory](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/nginx-welcome.png.png)  
 *"Welcome to nginx!"—If you see this, your event-loop maestro is humming. Docs at nginx.org for config wizardry.*
 
 ---
