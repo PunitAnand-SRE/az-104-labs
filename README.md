@@ -8,7 +8,7 @@ Documenting my practical labs for the AZ-104 certification. This is my path from
 |-------|------------------------|-------------|----------------|---------------|
 | 1 | Create Windows VM | ✅ Done | Nov 11, 2025 | NSG rules for secure access, RDP setup, basic cost management |
 | 2 | Configure and Secure Windows VM with IIS | ✅ Done | Nov 13, 2025 | VM sizing for performance; NSG rules for inbound security; IIS deployment basics |
-| 3 | Manage Azure Storage | ⏳ Planned | - | - |
+| 3 | Deploy Linux VM with Nginx | ✅ Done | Nov 15, 2025 | Multi-OS VNet reuse; SSH connectivity; NSG for HTTP exposure; Lightweight web serving efficiency |
 | 4 | Configure Virtual Network | ⏳ Planned | - | - |
 
 ## 🚀 Why This Repo?
