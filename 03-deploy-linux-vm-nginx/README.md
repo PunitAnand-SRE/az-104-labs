@@ -73,9 +73,11 @@ sudo apt install nginx  # Builds deps (nginx-common, nginx-core: 564 KB), auto-s
 ```  
 - 31 packages upgraded; no conflicts. Nginx v1.24.0-2ubuntu7.5 spins up flawlessly.  
 
-![Apt Update Ritual](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/apt-update.png.png)  
+![Apt Update Ritual](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/install-nginx.png.jpg
+)  
 
-![Nginx Installation Triumph](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/install-nginx.png.png)  
+![Nginx Installation Triumph](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/03-deploy-linux-vm-nginx/screenshots/install-nginx.png.jpg
+)  
 *Dependency tree woven, binaries upgraded—no restarts needed. ESM for apps: Disabled (enable for vuln patching).*
 
 ### 5. Validate the Fortress: Browser Ingress Test  
