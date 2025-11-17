@@ -48,21 +48,21 @@ RDP into `AppVM` > Launch **Server Manager** > **File and Storage Services** > *
 - Spot the uninitialized "Unknown" disk > Right-click > **Initialize** (GPT for >2TB scalability).  
 - New Volume Wizard: Right-click unallocated space > **New Volume** > NTFS, Label `E: Data`, Mount to `E:\`. Format quick (no perf hit for small disk).  
 
-![Server Manager Disk Awakening](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/04-attach-data-disk-windows-vm/screenshots/server-manager-disks.jpg)  
+![Server Manager Disk Awakening](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/04-attach-data-disk-windows-vm/screenshots/server-manager-disks.png)  
 *Three disks in harmony: C: (OS, 127 GiB), temp (8 GiB), and newborn Data (4 GiB). Initialized, partitioned—ready to ingest.*
 
 ### 3. Birth the Volume: E: Emerges as Data Exclave  
 In **Volumes** tab: Witness `E:` provisioning—Fixed 4 GiB, 3.9 GiB free (post-overhead).  
 - No dedup needed for raw data; focus on resilience (e.g., future ReFS for checksums).  
 
-![Volumes Victory Vault](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/04-attach-data-disk-windows-vm/screenshots/file-explorer-data-drive.jpg)  
+![Volumes Victory Vault](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/04-attach-data-disk-windows-vm/screenshots/file-explorer-data-drive.png)  
 *C: (109/127 GiB used), E: (pristine 3.9 GiB free). Dupe rate? Zero—pure, unadulterated space for app artifacts.*
 
 ### 4. Validate in the Wild: File Explorer's Frontier  
 Open **File Explorer** > `This PC` > Greet `E: (Data)`—empty canvas, but infinite potential.  
 - Test: Drop a dummy file (`test-log.txt`) > Verify persistence post-reboot.  
 
-![File Explorer Frontier](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/04-attach-data-disk-windows-vm/screenshots/file-explorer-data-drive.jpg)  
+![File Explorer Frontier](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/04-attach-data-disk-windows-vm/screenshots/file-explorer-data-drive.png)  
 *E: shines: 3.9 GiB free amid C:'s clutter. This is where logs land, DBs dwell—isolated, performant, eternal.*
 
 ---
