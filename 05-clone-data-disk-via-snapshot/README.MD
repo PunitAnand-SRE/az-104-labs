@@ -37,7 +37,7 @@ In this lab, we snapshot a 4 GiB data disk from `AppVM` (containing a sample fil
 
 This creates a read-only, crash-consistent snapshot—perfect for one-time clones.
 
-![Snapshot Creation Overview](screenshots/snapshot-overview.png)
+![Snapshot Creation Overview](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/05-clone-data-disk-via-snapshot/screenshots/snapshot-overview.png)
 
 ### Step 2: Provision New Data Disk from Snapshot
 1. Navigate to **Snapshots** > Select `appvm-data-01-snapshot01`.
@@ -54,8 +54,7 @@ This creates a read-only, crash-consistent snapshot—perfect for one-time clone
 
 Result: A writable, high-performance clone ready for attachment—leverages snapshot differentials for speed.
 
-![Disk Creation from Snapshot](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/05-clone-data-disk-via-snapshot/screenshots/snapshot-overview.png)
-
+![Disk Creation from Snapshot](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/05-clone-data-disk-via-snapshot/screenshots/create-disk-from-snapshot.png)
 
 ### Step 3: Deploy New VM and Attach Cloned Disk
 1. Go to **Virtual machines** > **Create** > **Azure virtual machine**.
@@ -124,7 +123,7 @@ Mastering snapshots transforms static storage into dynamic assets, accelerating 
 **References**:
 - [Azure Managed Disks Overview](https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview)
 - [Create Snapshots](https://learn.microsoft.com/en-us/azure/virtual-machines/snapshot-copy-managed-disk)
-- [SRE Workbook: Storage Reliability](https://sre.google/sre-book/storage-reliability/)
+- [SRE Workbook: Storage Reliability](https://sre.google/sre-book/data-integrity-what-you-read-is-what-you-wrote/)
 
 ---
 
