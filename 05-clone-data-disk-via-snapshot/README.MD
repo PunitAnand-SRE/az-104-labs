@@ -54,7 +54,8 @@ This creates a read-only, crash-consistent snapshot—perfect for one-time clone
 
 Result: A writable, high-performance clone ready for attachment—leverages snapshot differentials for speed.
 
-![Disk Creation from Snapshot](screenshots/create-disk-from-snapshot.png)
+![Disk Creation from Snapshot](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/05-clone-data-disk-via-snapshot/screenshots/snapshot-overview.png)
+
 
 ### Step 3: Deploy New VM and Attach Cloned Disk
 1. Go to **Virtual machines** > **Create** > **Azure virtual machine**.
@@ -82,7 +83,7 @@ The VM auto-mounts the disk, inheriting network topology for seamless integratio
 
 This confirms end-to-end integrity: No data corruption during snapshot-to-disk pipeline.
 
-![Data Verification on AppVM02](screenshots/verify-data-on-appvm02.png)
+![Data Verification on AppVM02](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/05-clone-data-disk-via-snapshot/screenshots/verify-data-on-appvm02.png)
 
 ## ✅ Verification Checklist
 - **Portal Checks**:
