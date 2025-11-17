@@ -117,7 +117,7 @@ Enhance your SRE toolkit with these insights:
 Mastering snapshots transforms static storage into dynamic assets, accelerating deployments and bolstering resilience. This lab reduced hypothetical data migration time from hours (manual copy) to seconds, embodying SRE's focus on toil reduction. Share this with your team to prototype a "data-as-code" pipeline!
 
 **Lab Completed**: November 17, 2025  
-**Author**: Punit Nandani (@punigate) – Hands-On Azure Admin to SRE Journey  
+**Author**: Punit Anand – Hands-On Azure Admin to SRE Journey  
 **GitHub Repo**: [az-104-labs](https://github.com/PunitNand-SRE/az-104-labs)  
 
 **References**:
