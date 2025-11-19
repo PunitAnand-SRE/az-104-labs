@@ -23,9 +23,6 @@ This lab demonstrates the implementation of **customer-managed disk encryption**
 3. **VM Disks**: Encrypted using the DES-referenced key.
 4. **Access Control**: RBAC roles ensure least-privilege access.
 
-![High-Level Architecture Diagram](/mnt/data/49e0f79b-6b09-4c29-85f7-ad767fd70a32.png)
-*(Conceptual diagram from Azure documentation for reference.)*
-
 ## Prerequisites
 - Azure subscription with Contributor/Owner permissions.
 - Existing Linux and Windows VMs (e.g., "LinuxAppVM" and "AppVM") with unencrypted managed disks.
