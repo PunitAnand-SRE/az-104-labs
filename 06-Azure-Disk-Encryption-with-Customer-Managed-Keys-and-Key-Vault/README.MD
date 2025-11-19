@@ -23,7 +23,7 @@ This lab demonstrates the implementation of **customer-managed disk encryption**
 3. **VM Disks**: Encrypted using the DES-referenced key.
 4. **Access Control**: RBAC roles ensure least-privilege access.
 
-![High-Level Architecture Diagram](https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview/media/disk-encryption-overview.png)
+![High-Level Architecture Diagram](/mnt/data/49e0f79b-6b09-4c29-85f7-ad767fd70a32.png)
 *(Conceptual diagram from Azure documentation for reference.)*
 
 ## Prerequisites
@@ -46,7 +46,8 @@ Create a Key Vault to store encryption keys. Enable soft-delete and purge protec
 - Pricing Tier: Standard.
 - Enable: Soft-delete and Purge protection.
 
-![Key Vault Overview Dashboard](./screenshots/key-vault69-overview-dashboard.png)
+![Key Vault Overview Dashboard](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/06-Azure-Disk-Encryption-with-Customer-Managed-Keys-and-Key-Vault/screenshots/key-vault69-overview-dashboard..png
+)
 
 **Key Concept**: Key Vault isolates secrets/keys from compute resources, logging all access for auditing.
 
@@ -59,7 +60,8 @@ By default, even owners lack permissions to create keys. Assign RBAC roles.
 - Scope: This resource.
 - Save and wait 5-10 minutes for propagation.
 
-![RBAC Role Assignment for Key Vault Admin](./screenshots/rbac-role-assignment-for-key-vault-admin.png)
+![RBAC Role Assignment for Key Vault Admin](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/06-Azure-Disk-Encryption-with-Customer-Managed-Keys-and-Key-Vault/screenshots/rbac-role-assignment-for-key-vault-admin.png
+)
 
 **Troubleshooting Note**: If you encounter authorization errors during key creation, verify role propagation via Activity Log.
 
@@ -72,7 +74,8 @@ With permissions in place, generate a CMK.
 - Key Size: 2048 bits.
 - Create.
 
-![Successful Creation of dataKey in Vault](./screenshots/successful-creation-of-datakey-in-vault.png)
+![Successful Creation of dataKey in Vault](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/06-Azure-Disk-Encryption-with-Customer-Managed-Keys-and-Key-Vault/screenshots/successful-creation-of-datakey-in-vault.png
+)
 
 **Key Concept**: Keys are versioned (e.g., `dataKey-abc123`). Rotate by creating new versions without disrupting encryption.
 
@@ -86,7 +89,8 @@ DES bundles the CMK for scalable application.
 - Key: Select `dataKey`.
 - Grant permissions: Add `Disk Encryption Key Encipherment` role to the vault's managed identity.
 
-![Disk Encryption Set Creation with Key URI](./screenshots/disk-encryption-set-creation-with-key-uri.png)
+![Disk Encryption Set Creation with Key URI](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/06-Azure-Disk-Encryption-with-Customer-Managed-Keys-and-Key-Vault/screenshots/disk-encryption-set-creation-with-key-uri.png
+)
 
 **Key Concept**: DES supports auto-key rotation (disabled here for manual control). It uses the key URI (e.g., `https://keyvault69.vault.azure.net/keys/dataKey/...`) for secure reference.
 
@@ -98,7 +102,8 @@ Encrypt an existing data disk using the DES.
 - Disk Encryption Set: Select your DES.
 - Save.
 
-![Applying Encryption Set to LinuxAppVM Disk](./screenshots/applying-encryption-set-to-linuxappvm-disk.png)
+![Applying Encryption Set to LinuxAppVM Disk](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/06-Azure-Disk-Encryption-with-Customer-Managed-Keys-and-Key-Vault/screenshots/applying-encryption-set-to-linuxappvm-disk.png
+)
 
 **Key Concept**: Encryption is incremental—no VM restart needed for data disks. Azure handles wrap/unwrap operations via Key Vault.
 
@@ -110,7 +115,8 @@ Repeat key creation for OS-specific isolation.
 - Same specs as `dataKey`.
 - Create.
 
-![Creation of diskKey for Windows Encryption](./screenshots/creation-of-diskkey-for-windows-encryption.png)
+![Creation of diskKey for Windows Encryption](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/06-Azure-Disk-Encryption-with-Customer-Managed-Keys-and-Key-Vault/screenshots/creation-of-diskkey-for-windows-encryption.png
+)
 
 ### Step 7: Update Key Vault Access Configuration
 Enable service access for Disk Encryption.
@@ -120,7 +126,8 @@ Enable service access for Disk Encryption.
 - Resource Access: Check `Azure Disk Encryption for volume encryption`.
 - Save.
 
-![Key Vault Access Configuration for Disk Encryption](./screenshots/key-vault-access-configuration-for-disk-encryption.png)
+![Key Vault Access Configuration for Disk Encryption](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/06-Azure-Disk-Encryption-with-Customer-Managed-Keys-and-Key-Vault/screenshots/key-vault-access-configuration-for-disk-encryption.png
+)
 
 **Key Concept**: This grants the Azure Disk Encryption service principal permissions like `get`, `wrapKey`, and `unwrapKey` without broad vault access.
 
@@ -133,7 +140,8 @@ Apply encryption to the OS disk via VM extension.
 - Key Encryption Key URL: URI of `diskKey`.
 - Create (VM may restart).
 
-![Azure Disk Encryption Extension on AppVM](./screenshots/azure-disk-encryption-extension-on-appvm.png)
+![Azure Disk Encryption Extension on AppVM](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/06-Azure-Disk-Encryption-with-Customer-Managed-Keys-and-Key-Vault/screenshots/azure-disk-encryption-extension-on-appvm.png
+)
 
 **Key Concept**: The extension runs BitLocker inside the guest OS. For OS disks, a restart is required, but data remains accessible post-encryption.
 
@@ -144,7 +152,8 @@ Connect to the Windows VM and confirm no disruption.
 - Open File Explorer: Drives (C:, D:, E:) should be accessible.
 - PowerShell Check: `manage-bde -status C:` (shows "Protection Status: On").
 
-![Verification of Encryption via RDP on AppVM](./screenshots/verification-of-encryption-via-rdp-on-appvm.png)
+![Verification of Encryption via RDP on AppVM](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/06-Azure-Disk-Encryption-with-Customer-Managed-Keys-and-Key-Vault/screenshots/verification-of-encryption-via-rdp-on-appvm.png
+)
 
 **Key Concept**: Encryption is transparent—users see normal files, but data is AES-256 encrypted at the block level.
 
