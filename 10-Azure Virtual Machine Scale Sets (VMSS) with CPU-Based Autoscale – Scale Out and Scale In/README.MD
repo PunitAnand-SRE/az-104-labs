@@ -111,7 +111,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
    - NIC network security group: **Basic** (allows HTTP/HTTPS).
    - Inbound ports: **Allow selected ports** → Select **HTTP (80)** and **SSH (22)**.
    
-   ![VMSS NIC Configuration](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/01-VMSS-NIC-Configuration-PublicIP-Enabled-and-Inbound-Ports-HTTP-SSH.png)
+   ![VMSS NIC Configuration](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-NIC-Configuration-PublicIP-Enabled-and-Inbound-Ports-HTTP-SSH.png)
    
    > **Tip:** The warning about NSG rules is standard—use advanced networking tab for IP restrictions in production.
 
@@ -125,7 +125,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
    - Orchestration mode: Uniform.
    - OS: Linux.
 
-   ![VMSS scaleSet01 Overview](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/02-VMSS-scaleSet01-Overview-After-Creation.png)
+   ![VMSS scaleSet01 Overview](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-scaleSet01-Overview-After-Creation.png)
 
 ### Step 3: Check Initial Instances
 1. Select **Instances** under Settings.
@@ -135,7 +135,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
    - Private IP: e.g., 172.16.0.4.
    - Provisioning state: Succeeded.
 
-   ![Initial Instance View](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/03-VMSS-scaleSet01-Instances-Initial-State-with-PublicIP.png)
+   ![Initial Instance View](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-scaleSet01-Instances-Initial-State-with-PublicIP.png)
 
 ### Step 4: Configure Scale-Out Rule
 1. In `scaleSet01` > **Scaling** (under Settings) > **Autoscale** > **Custom autoscale**.
@@ -149,7 +149,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
    - Cool down: **5 minutes**.
    - Instance limits: Min **1**, Max **3**.
 
-   ![Scale-Out Rule Creation](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/04-VMSS-Autoscale-Rule-Creation-CPU-Greater-Than-70-Percent.png)
+   ![Scale-Out Rule Creation](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-Autoscale-Rule-Creation-CPU-Greater-Than-70-Percent.png)
 
 4. **Save**. If error occurs (e.g., "MissingSubscriptionRegistration" for 'microsoft.insights'), proceed to Step 5.
 
@@ -158,7 +158,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
 2. Search for `Microsoft.Insights` → Status: **Registering** or **NotRegistered**.
 3. Select **Register**.
 
-   ![Registering Microsoft Insights](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/05-Subscription-Registering-Microsoft-Insights-Provider.png)
+   ![Registering Microsoft Insights](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/Subscription-Registering-Microsoft-Insights-Provider.png)
 
 4. Wait 2-3 minutes, refresh, and retry saving the rule. This enables Azure Monitor metrics for autoscale.
 
@@ -168,7 +168,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
 3. Run stress: `stress --cpu 1 --timeout 600s` (stresses 1 CPU core for 10 minutes).
 4. In Portal: Monitor **Scaling** > **Run history** for scale-up events.
 
-   ![Scale-Up Triggered](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/06-VMSS-Autoscale-Run-History-Scale-Up-Triggered.png)
+   ![Scale-Up Triggered](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-Autoscale-Run-History-Scale-Up-Triggered.png)
 
    > **Observed:** Capacity increased from 1 to 3 instances after ~5-10 minutes.
 
@@ -176,7 +176,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
 1. Go to **Instances**.
 2. Confirm 3 running instances: `scaleSet01_0`, `scaleSet01_1`, `scaleSet01_2`.
 
-   ![Instances After Scale-Out](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/07-VMSS-Instances-After-Scale-Up-Three-Instances-Running.png)
+   ![Instances After Scale-Out](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-Instances-After-Scale-Up-Three-Instances-Running.png)
 
 ### Step 8: Configure Scale-In Rule
 1. Back to **Scaling** > Edit autoscale.
@@ -188,7 +188,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
    - Operation: **Decrease count by** → **1**.
    - Cool down: **5 minutes**.
 
-   ![Scale-In Rule](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/08-VMSS-Autoscale-Scale-In-Rule-CPU-Less-Than-50-Percent.png)
+   ![Scale-In Rule](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-Autoscale-Scale-In-Rule-CPU-Less-Than-50-Percent.png)
 
 3. **Save**.
 
@@ -196,7 +196,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
 1. Stop stress on the original instance: `Ctrl+C`.
 2. Wait 5-10 minutes; monitor **Run history** for scale-down.
 
-   ![Scale-Down Triggered](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/09-VMSS-Autoscale-Run-History-Scale-Down-Triggered.png)
+   ![Scale-Down Triggered](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-Autoscale-Run-History-Scale-Down-Triggered.png)
 
 3. Check **Instances**: Should reduce to 1-2.
 
