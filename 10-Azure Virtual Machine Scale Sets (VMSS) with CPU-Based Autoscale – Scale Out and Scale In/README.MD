@@ -111,7 +111,7 @@ Follow these steps in the Azure Portal. All screenshots reference your uploaded 
    - NIC network security group: **Basic** (allows HTTP/HTTPS).
    - Inbound ports: **Allow selected ports** → Select **HTTP (80)** and **SSH (22)**.
    
-   ![VMSS NIC Configuration](https://github.com/PunitAnand-SRE/az-104-labs/blob/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-NIC-Configuration-PublicIP-Enabled-and-Inbound-Ports-HTTP-SSH.png.png)
+   ![VMSS NIC Configuration](![VMSS NIC](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/10-Azure%20Virtual%20Machine%20Scale%20Sets%20(VMSS)%20with%20CPU-Based%20Autoscale%20%E2%80%93%20Scale%20Out%20and%20Scale%20In/screenshots/VMSS-NIC-Configuration-PublicIP-Enabled-and-Inbound-Ports-HTTP-SSH.png)
    
    > **Tip:** The warning about NSG rules is standard—use advanced networking tab for IP restrictions in production.
 
