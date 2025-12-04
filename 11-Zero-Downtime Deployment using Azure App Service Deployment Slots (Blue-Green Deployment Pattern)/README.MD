@@ -2,104 +2,143 @@
 
 [![Production After Swap](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/11-Zero-Downtime%20Deployment%20using%20Azure%20App%20Service%20Deployment%20Slots%20(Blue-Green%20Deployment%20Pattern)/screenshots/09-post-swap-verification-production-now-shows-version-1.png)](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/11-Zero-Downtime%20Deployment%20using%20Azure%20App%20Service%20Deployment%20Slots%20(Blue-Green%20Deployment%20Pattern)/screenshots/09-post-swap-verification-production-now-shows-version-1.png)
 
-## Objective
-Implement a **real-world, production-grade, zero-downtime deployment** using **Azure App Service Deployment Slots** — the exact blue-green deployment pattern used by Microsoft, Netflix, Adobe, and nearly every enterprise on Azure.
+## 🎯 Objective  
+Implement a **production-grade, zero-downtime deployment strategy** using **Azure App Service Deployment Slots** — the same pattern used by Microsoft, Netflix, Adobe, and other enterprise workloads.
 
-## Why This is Critical in Production & Interviews
-- 100% uptime during deployments
-- Instant rollback in under 10 seconds
-- Supports A/B testing, canary releases, feature toggles
-- Required for PCI-DSS, HIPAA, SOC2 compliance
-- One of the **top 5 most-asked DevOps/Azure scenarios** in interviews
+This is a **true blue-green deployment**.
 
-## Architecture Overview
+---
+
+## 🚀 Why This Lab is Critical for SRE/DevOps Roles
+- Ensures **100% uptime** during deployments  
+- Enables **instant rollback** (under 10 seconds)  
+- Supports canary releases, A/B testing, feature flags  
+- Required in compliance environments (PCI-DSS, HIPAA, SOC2)  
+- One of the **top 5 most asked scenarios** in Azure DevOps/SRE interviews  
+
+---
+
+## 🏗️ Architecture Flow
+
+```
+
 User Traffic ---> Production Slot (werapp-dev-cind.azurewebsites.net)
-↑                       ↔ Instant Swap (Zero Downtime)
+↑                     ↔ (Instant Swap – Zero Downtime)
+|
 Staging Slot (werapp-dev-cind-staging.azurewebsites.net)
-text## Step-by-Step Execution
 
-### 1. Created Azure App Service (Linux + PHP 8.4)
+````
+
+---
+
+## 🔧 Step-by-Step Execution
+
+### **1. Azure App Service Created (Linux + PHP 8.4)**
 ![Web App Overview](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/11-Zero-Downtime%20Deployment%20using%20Azure%20App%20Service%20Deployment%20Slots%20(Blue-Green%20Deployment%20Pattern)/screenshots/01-webapp-overview-and-details.png)
 
-### 2. Deployed Initial Version to Production via SSH
+---
+
+### **2. Deployed Initial Version to Production via SSH**
+
 ```bash
 cd /home/site/wwwroot && nano index.php
-Content: "Hello from Azure Web Apps (PHP)!"
-SSH into Production
-Production Live – Initial Version
-3. Scaled Up to Standard S1 Tier
-Deployment Slots are not available in Free/Basic tiers
-Scale Up to S1
-4. Created Staging Deployment Slot
-Name: staging | Cloned configuration from production
-Creating Staging Slot
-Staging Slot Created
-5. Deployed New Version (v1) to Staging Slot & Tested
-Updated index.php → "Web Application - Version 1"
-Staging – Version 1 Live
-6. Performed Zero-Downtime Swap
-No restart | No dropped requests | No DNS changes
-Swap Operation
-7. Verified Production Now Serves Version 1
-Old version instantly moved to staging (ready for rollback)
-Final Production – Version 1 Live
-Key Benefits Demonstrated
+# Content:
+Hello from Azure Web Apps (PHP)!
+````
 
+Production now serves the **initial version**.
 
+---
 
+### **3. Scaled Up to Standard S1 Tier**
 
+> Required because **deployment slots are not available** in Free/Basic tiers.
 
+---
 
+### **4. Created Staging Deployment Slot**
 
+* Name: `staging`
+* Config cloned from production
 
+Staging slot created successfully.
 
+---
 
+### **5. Deployed New Version (v1) to Staging & Tested**
 
+Updated `index.php`:
 
+```php
+Web Application - Version 1
+```
 
+Staging now serves **Version 1**.
 
+---
 
+### **6. Executed Zero-Downtime Swap (Staging → Production)**
 
+Azure pre-warms the staging app to eliminate cold starts.
 
+Swap completed — no downtime.
 
+---
 
+### **7. Verified Production Now Serves Version 1**
 
+Old version automatically moved to staging → **instant rollback available**.
 
+---
 
+## ♻️ Instant Rollback Demo (Real Scenario)
 
+If Version 1 has an issue:
 
+1. Go to Deployment Slots
+2. Click **Swap** again
+3. Old stable version restored in **< 10 seconds**
+4. **No user impact**
 
+---
 
+## ⭐ Key Benefits Proven
 
+| Feature              | Real-World Advantage                        |
+| -------------------- | ------------------------------------------- |
+| Zero-Downtime Swap   | No user disruption                          |
+| Instant Rollback     | One-click revert                            |
+| Pre-warmed Instances | No cold-start latency                       |
+| Isolated Testing URL | QA/UAT without affecting production         |
+| AutoSwap + Traffic % | Canary releases with Front Door/App Gateway |
 
+---
 
+## 🔧 Azure Features Used
 
+* Azure App Service (Linux, PHP 8.4)
+* Deployment Slots + Swap
+* Standard S1 Tier
+* Built-in SSH Console
+* Zero-downtime traffic routing
 
+---
 
+## 📘 AZ-104 Exam Relevance
 
-FeatureReal-World AdvantageZero-Downtime SwapUsers never experience errors or downtimeInstant RollbackOne-click revert in under 10 secondsPre-warmed InstancesNew version fully warmed up before receiving trafficIsolated Testing URLQA/stakeholders validate without affecting productionConfiguration IsolationTest different connection strings / app settings safelyTraffic Routing SupportEnable canary releases with Azure Front Door / Traffic Manager
-Real-World Rollback Scenario (Career-Saving Moment)
-If Version 1 has a critical bug after going live:
+Directly covers:
 
-Go to Deployment Slots
-Click Swap again
-Old stable version restored instantly
-→ Zero user impact. No 2 AM calls.
+**“Deploy and configure Azure App Service” → Deployment Slots & Swap**
 
-This is how companies deploy multiple times per day safely.
-Azure Features Used
+---
 
-Azure App Service (Linux, PHP 8.4)
-Deployment Slots + Swap
-Standard Tier (S1)
-Built-in SSH Console
-Zero-downtime traffic routing
+## 🏷️ Tags
 
-AZ-104 Exam Relevance
-Directly maps to: "Deploy and configure Azure App Service" → Deployment Slots & Swap operations
-Tags
-Azure App Service Deployment Slots Blue-Green Deployment Zero Downtime DevOps SRE CI/CD Rollback Production Deployment AZ-104
+Azure • App Service • Deployment Slots • Blue-Green Deployment • Zero Downtime • DevOps • SRE • CI/CD • Production Deployment • Rollback • AZ-104
 
-Punit Anand – Azure | DevOps | SRE
-Building production-grade cloud expertise, one lab at a time
-LinkedIn | GitHub
+---
+
+## ✍️ Author
+
+**Punit Anand – Azure | DevOps | SRE**
+Turning labs into production muscle
