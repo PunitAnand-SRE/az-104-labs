@@ -4,29 +4,29 @@
 
 ## 📌 Overview
 
-In this lab, I designed and implemented a **custom Azure Virtual Network (VNet)** with **multiple subnets** to simulate a **real-world, production-style application architecture**.
+In this lab, I designed and implemented a **custom Azure Virtual Network (VNet)** with **multiple subnets** to represent a **real-world, production-grade application architecture**.
 
-Instead of relying on Azure’s default networking during VM creation, the network was **explicitly designed first**, followed by deploying virtual machines into appropriate subnets based on their role (Web vs Database).
+Instead of allowing Azure to auto-create networking during VM deployment, the **VNet and subnets were designed first**, and then virtual machines were deployed into the appropriate subnets based on their role (Web tier vs Database tier).
 
-This approach mirrors how **enterprises and SRE teams design secure, scalable, and maintainable cloud networks**.
+This approach reflects how **enterprise cloud environments** and **SRE teams** design networks for **security, scalability, and operational clarity**.
 
 ---
 
 ## 🎯 Objective
 
 * Understand **why VNets are required in enterprise environments**
-* Design a **multi-subnet network architecture**
+* Design a **multi-subnet Azure network**
 * Deploy:
 
-  * A **Web VM** with public access
-  * A **Database VM** with **no public exposure**
-* Understand:
+  * A **Web VM** exposed to the internet
+  * A **Database VM** isolated from the internet
+* Understand and apply:
 
   * IP addressing
   * Subnetting
-  * CIDR
+  * CIDR notation
   * NIC behavior
-* Apply **security-first and SRE-oriented networking principles**
+* Align networking decisions with **SRE principles**
 
 ---
 
@@ -34,26 +34,23 @@ This approach mirrors how **enterprises and SRE teams design secure, scalable, a
 
 In real organizations:
 
-* Applications **must not run on public networks**
-* Traffic must be **controlled, inspected, and segmented**
-* Teams need:
-
-  * Predictable IP addressing
-  * Isolation between tiers (Web, App, DB)
-  * Secure internal communication
+* Applications **must not run directly on the public internet**
+* Traffic must be **segmented, secured, and predictable**
+* Failures must be **isolated** to reduce blast radius
+* Operations teams need **clear visibility and control**
 
 An **Azure Virtual Network (VNet)** provides:
 
-* A **private, isolated network** in Azure
-* Full control over:
+* A **private network boundary** in Azure
+* Control over:
 
-  * IP ranges
+  * IP address ranges
   * Subnets
   * Routing
-  * Security rules
+  * Security rules (NSGs, firewalls)
 
-> 💡 **SRE perspective:**
-> A well-designed VNet reduces outages, limits blast radius, and simplifies troubleshooting.
+> 🔎 **SRE perspective:**
+> A well-designed VNet simplifies incident response, limits security exposure, and supports scalable growth.
 
 ---
 
@@ -66,68 +63,71 @@ An **Azure Virtual Network (VNet)** provides:
 * **Region:** Central India
 * **Resource Group:** `rg-az104-dev-cind`
 
-This address space allows **65,536 private IP addresses**, giving room for future growth.
+This `/16` address space allows **65,536 private IP addresses**, enabling future expansion without re-architecting the network.
 
 ### VNet Overview
 
-![VNet Overview](screenshots/01-vnet-overview-and-address-space.png)
+![VNet Overview](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/12-azure-virtual-network-multi-subnet-architecture/screenshots/01-vnet-overview-and-address-space.png)
 
 ---
 
-## 🧠 Networking Fundamentals (Core Concepts)
+## 🧠 Core Networking Concepts (Explained with Examples)
 
 ### 1️⃣ IP Address
 
 An **IP address** uniquely identifies a resource in a network.
 
-Example:
+**Examples from this lab:**
 
 * Web VM private IP: `10.0.0.4`
 * DB VM private IP: `10.0.1.4`
 
-> SRE relevance: IP consistency is critical for monitoring, firewall rules, and incident debugging.
+> 💡 **SRE relevance:**
+> Predictable IP addressing is critical for monitoring, firewall rules, and troubleshooting production incidents.
 
 ---
 
 ### 2️⃣ CIDR (Classless Inter-Domain Routing)
 
-CIDR defines how many IPs a network contains.
+CIDR defines how many IP addresses a network contains.
 
-Examples used:
+**CIDRs used in this lab:**
 
-* `10.0.0.0/16` → VNet
-* `10.0.0.0/24` → Web Subnet
-* `10.0.1.0/24` → DB Subnet
+| CIDR  | Usage       | Total IPs |
+| ----- | ----------- | --------- |
+| `/16` | VNet        | 65,536    |
+| `/24` | Each subnet | 256       |
 
-| CIDR | Total IPs |
-| ---- | --------- |
-| /16  | 65,536    |
-| /24  | 256       |
+Examples:
+
+* `10.0.0.0/16` → Entire VNet
+* `10.0.0.0/24` → Web subnet
+* `10.0.1.0/24` → DB subnet
 
 ---
 
 ### 3️⃣ Subnet
 
-A **subnet** divides a VNet into smaller logical networks.
+A **subnet** is a logical subdivision of a VNet.
 
-Why subnets matter:
+**Why subnets matter:**
 
 * Security isolation
-* Traffic control
-* Clear role separation
+* Role-based segmentation
+* Controlled traffic flow
 
 ---
 
-## 🧩 Subnet Architecture (Web & DB Tier)
+## 🧩 Subnet Architecture (Web & DB Tiers)
 
 | Subnet Name            | Address Range | Purpose       |
 | ---------------------- | ------------- | ------------- |
 | `snet-dev-cind-web-01` | `10.0.0.0/24` | Web tier      |
 | `snet-dev-cind-db-01`  | `10.0.1.0/24` | Database tier |
 
-### Subnet View
+### Subnet Design View
 
-![Subnets](screenshots/04-db-subnet-and-private-db-vm-without-public-ip.png)
+![Subnets](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/12-azure-virtual-network-multi-subnet-architecture/screenshots/04-db-subnet-and-private-db-vm-without-public-ip.png)
 
 ---
 
@@ -138,35 +138,35 @@ Why subnets matter:
 * **VM Name:** `vm-dev-cind-web-01`
 * **Subnet:** `snet-dev-cind-web-01`
 * **Private IP:** `10.0.0.4`
-* **Public IP:** Assigned
+* **Public IP:** Enabled
 * **Purpose:** Internet-facing application server
 
 ### Web VM Overview
 
-![Web VM](screenshots/02-web-vm-deployed-in-web-subnet-with-public-ip.png)
+![Web VM](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/12-azure-virtual-network-multi-subnet-architecture/screenshots/02-web-vm-deployed-in-web-subnet-with-public-ip.png)
 
 ---
 
 ## 🔌 Network Interface (NIC) Behavior
 
-When a VM is created, Azure automatically creates:
+When a VM is deployed, Azure automatically creates:
 
 * A **Network Interface (NIC)**
 * Assigns:
 
-  * Private IP from the subnet
-  * Optional public IP
+  * A private IP from the subnet
+  * A public IP (if enabled)
 
 ### NIC IP Assignment
 
-![NIC IP](screenshots/03-network-interface-ip-assignment-from-subnet.png)
+![NIC IP Assignment](https://raw.githubusercontent.com/PunitAnand-SRE/az-104-labs/main/12-azure-virtual-network-multi-subnet-architecture/screenshots/03-network-interface-ip-assignment-from-subnet.png)
 
 **Key observation:**
 
-* The IP `10.0.0.4` was dynamically assigned from `10.0.0.0/24`
+* IP `10.0.0.4` was dynamically allocated from `snet-dev-cind-web-01`
 
-> 💡 **AZ-104 exam tip:**
-> NICs, not VMs, are associated with IPs and NSGs.
+> 📘 **AZ-104 key point:**
+> IPs and NSGs are associated with **NICs**, not directly with VMs.
 
 ---
 
@@ -177,31 +177,21 @@ When a VM is created, Azure automatically creates:
 * **VM Name:** `vm-dev-cind-db-01`
 * **Subnet:** `snet-dev-cind-db-01`
 * **Private IP:** `10.0.1.4`
-* **Public IP:** ❌ None
+* **Public IP:** ❌ Not assigned
 * **Purpose:** Internal database server
 
 ### Why No Public IP?
 
-* Prevents internet exposure
+* Prevents direct internet access
 * Reduces attack surface
-* Enforces access only from Web tier
+* Enforces internal-only communication
 
 > 🔐 **SRE principle:**
-> “Private by default, public only when required.”
+> “If a resource doesn’t need internet access, it should not have a public IP.”
 
 ---
 
-## 🔐 Security & SRE Design Principles Applied
-
-✔ Network segmentation
-✔ Principle of least exposure
-✔ Clear tier separation
-✔ Scalable IP planning
-✔ Real-world enterprise pattern
-
----
-
-## 🔁 Traffic Flow (End-to-End)
+## 🔁 End-to-End Traffic Flow
 
 ```
 Internet
@@ -219,29 +209,38 @@ DB VM (10.0.1.4)
 
 ## 🧪 Verification
 
-* Web VM accessible via public IP
-* DB VM **not reachable** from internet
-* Web VM can communicate with DB VM internally
-* IPs correctly allocated from respective subnets
+* Web VM accessible from the internet
+* DB VM not reachable from the internet
+* Both VMs can communicate internally
+* IPs correctly assigned from respective subnets
 
 ---
 
-## 🧹 Cleanup (Cost Control)
+## 🔐 Security & SRE Design Principles Applied
 
-To avoid unnecessary Azure costs:
-
-* Delete resource group: `rg-az104-dev-cind`
+✔ Network segmentation
+✔ Least exposure principle
+✔ Tier-based isolation
+✔ Scalable IP planning
+✔ Production-aligned architecture
 
 ---
 
 ## 📚 AZ-104 Skills Covered
 
-* Virtual Network design
-* Subnet planning
-* CIDR calculation
-* NIC behavior
+* Azure Virtual Networks
+* Subnet design & CIDR
+* NIC and IP behavior
+* Public vs private IPs
 * Secure VM deployment
-* Public vs private IP usage
+
+---
+
+## 🧹 Cleanup
+
+To avoid unnecessary Azure charges:
+
+* Delete resource group: `rg-az104-dev-cind`
 
 ---
 
@@ -249,9 +248,9 @@ To avoid unnecessary Azure costs:
 
 This lab demonstrates:
 
-* Intentional architecture (not defaults)
-* Security-aware design
-* Troubleshooting-ready layout
-* Production-grade thinking
+* Intentional network design
+* Security-first thinking
+* Clear operational boundaries
+* Troubleshooting-friendly architecture
 
-> This is **exactly how real systems are built and reviewed** by SRE and Cloud Engineering teams.
+This is **how real production systems are designed and reviewed** by SRE and Cloud Engineering teams.
